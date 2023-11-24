@@ -40,7 +40,7 @@ def login():
         password = request.form['password']
         error = None
 
-        user = db.session.execute(db.select(User).where(User.username == username)).first()
+        user = db.session.execute(db.select(User).filter_by(username = username)).scalar_one()
         if user is None:
             error =  f"Username {username} not found"
         else:
