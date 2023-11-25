@@ -6,7 +6,6 @@ app = Flask(__name__)
 db = SQLAlchemy()
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
-# app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://username:password@postgres_ip:5432/postgres_db"
 app.config["SECRET_KEY"] = secrets.token_hex()
 
 db.init_app(app)
