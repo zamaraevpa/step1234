@@ -2,6 +2,8 @@ import os
 import secrets
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from .utils import get_postgres_database_uri
+
 
 app = Flask(__name__)
 db = SQLAlchemy()
@@ -26,11 +28,3 @@ app.register_blueprint(auth.bp)
 from . import views
 app.register_blueprint(views.bp)
 app.add_url_rule('/', endpoint='index')
-
-def get_postgres_database_uri():
-    sql_user = os.environ["SQL_USER"]
-    sql_password = os.environ["SQL_PASSWORD"]
-    sql_host = os.environ["SQL_HOST"]
-    sql_port = os.environ["SQL_PORT"]
-    sql_database = os.environ["SQL_DATABASE"]
-    return f"postgresql://{sql_user}:{sql_password}@{sql_host}:{sql_port}/{sql_database}"
